@@ -1,0 +1,712 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Romane Lequeux - Mes Expériences Professionnelles</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: #f9f9f9; /* Fond léger agréable */
+            color: #333; /* Couleur de texte par défaut plus sombre */
+            margin: 0;
+            line-height: 1.6; /* Améliore la lisibilité */
+            padding: 10px; /* Un peu de marge globale */
+        }
+
+        .container {
+            max-width: 1400px; /* Largeur maximale du contenu */
+            margin: 40px auto; /* Centrage et marges extérieures */
+            padding: 0 20px; /* Padding sur les côtés */
+        }
+
+        /* --- Header de la page --- */
+        header.page-header {
+            background: #b5c9ff; /* Couleur principale douce */
+            color: black;
+            padding: 30px 20px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(181, 201, 255, 0.5); /* Ombre douce et colorée */
+        }
+        header.page-header h1 {
+            margin-top: 0;
+            font-size: 2.8em; /* Un peu plus grand */
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        header.page-header p.header-subtitle {
+            font-size: 1.1em;
+            color: #555;
+            margin-top: 0;
+        }
+
+        /* --- Navigation par Onglets*/
+        nav.tabs {
+            display: flex;
+            align-items: center; /* Centre verticalement */
+            margin-bottom: 30px;
+            gap: 10px; /* Petit espace entre les onglets */
+            padding-bottom: 10px;
+            width: 100%;
+            box-sizing: border-box;
+            overflow-x: auto; /* Scroll horizontal si nécessaire */
+            -webkit-overflow-scrolling: touch;
+            flex-wrap: nowrap; /* En principe, on essaie de garder sur une ligne */
+            border-bottom: 1px solid #e0e0e0; /* Ligne de séparation discrète */
+        }
+        nav.tabs a {
+            padding: 12px 20px;
+            background: transparent;
+            color: #777;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1em;
+            transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; /* Transitions douces */
+            white-space: nowrap;
+            flex-shrink: 0; /* Empêche le rétrécissement */
+            cursor: pointer;
+            position: relative; /* Pour le pseudo-élément ::after */
+            border-radius: 8px; /* Coins légèrement arrondis */
+        }
+        nav.tabs a::after { /* Ligne sous l'onglet actif ou survolé */
+            content: '';
+            position: absolute;
+            bottom: -6px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: transparent; /* Sera surchargé par le JS ou les règles .active::after */
+            transition: background-color 0.3s ease;
+        }
+        nav.tabs a.active {
+            color: #b5c9ff; /* Couleur active */
+        }
+        nav.tabs a.active::after {
+            background-color: #b5c9ff; /* Ligne sous l'onglet actif */
+        }
+        nav.tabs a:not(.active):hover {
+            color: #333;
+            background-color: #f0f0f0; /* Léger fond au survol */
+            border-color: #d0d0d0;
+        }
+
+        /* --- Contenu des Onglets --- */
+        .tab-content {
+            display: none;
+            background: #fff; /* Fond blanc */
+            padding: 40px; /* Padding généreux */
+            border-radius: 8px; /* Coins légèrement arrondis */
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Ombre légère */
+            margin-top: 20px; /* Espace au-dessus */
+        }
+        .tab-content.active {
+            display: block;
+        }
+        /* Styles pour les titres dans le contenu des onglets */
+        .tab-content h4 { font-size: 1.3em; color: #444; margin-top: 25px; margin-bottom: 15px; }
+
+        /* Typographie et listes */
+        .tab-content ul {
+            list-style-type: disc;
+            margin-left: 25px;
+            padding-left: 10px;
+        }
+        .tab-content ul ul {
+            list-style-type: circle;
+            margin-top: 8px;
+        }
+        .tab-content p {
+            margin-bottom: 15px;
+        }
+
+        /* --- Section Compétences (utilisation des styles généraux) --- */
+        .tools-container {
+            text-align: center;
+            margin-top: 25px;
+            margin-bottom: 30px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .tool-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+}
+        .tool-logo:hover {
+            transform: scale(1.1);
+        }
+
+        /* --- Structure d'une entrée de "projet" ou "expérience" --- */
+        section { 
+            margin-bottom: 40px;
+            background: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            margin-top: 50px;
+            font-size: 0.9em;
+            color: #777;
+            background: #e0e0e0;
+            border-radius: 10px 10px 0 0;
+        }
+
+        /* --- Bouton Retour --- */
+        a.back {
+            display: inline-block;
+            margin: 20px 0;
+            padding: 10px 15px;
+            color: #b5c9ff;
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid #b5c9ff;
+            border-radius: 20px;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        a.back:hover {
+            background-color: #b5c9ff;
+            color: white;
+        }
+
+        /* --- Responsive Design --- */
+        @media (min-width: 769px) {
+            nav.tabs {
+                flex-wrap: nowrap;
+                gap: 10px;
+                border-bottom: 1px solid #e0e0e0;
+            }
+            nav.tabs a {
+                padding: 12px 20px;
+                border-radius: 8px;
+                border: 1px solid transparent;
+            }
+            nav.tabs a.active {
+                background-color: #f9f9f9;
+                border-color: #f9f9f9;
+            }
+            nav.tabs a:not(.active):hover {
+                background-color: #f0f0f0;
+                border-color: #d0d0d0;
+            }
+        }
+
+        /* Styles spécifiques pour "formation Header" */
+        .formation-header {
+            text-align: center;
+            margin-bottom: 0px;
+            background: white; 
+            padding: 0px 0px;
+        }
+        
+        .formation-header h1 {
+            font-size: 2.2em;
+            margin-bottom: 0px;
+            color : #b5c9ff;
+            background: white; 
+        }
+        .formation-meta {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        /* Styles spécifiques pour "exper Header" */
+        .exper-header {
+            text-align: center;
+            margin-bottom: 0px;
+            background: #f9f9f9; 
+            padding: 0px 0px;
+        }
+        
+        .exper-header h1 {
+            font-size: 4em;
+            color : black;
+            margin-bottom: 3px;
+            background: #f9f9f9; 
+        }
+
+        /* Styles pour les headers d'expérience */
+        .experience-header {
+            text-align: center;
+            margin-bottom: 40px;
+            background: #b5c9ff;
+            padding: 40px 20px;
+            border-radius: 10px;
+        }
+        .experience-header img {
+            height: 100px;
+            margin-bottom: 15px;
+            box-shadow: none;
+        }
+        .experience-header h1 {
+            font-size: 2.2em;
+            margin-bottom: 5px;
+            color: black;
+        }
+        .experience-meta {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 20px;
+        }
+
+        /* Styles pour le PDF */
+        .pdf-container {
+            margin-top: 30px;
+            text-align: center;
+        }
+        .pdf-container p {
+            margin-bottom: 15px;
+            font-size: 1.1em;
+            color: #555;
+        }
+        .pdf-container iframe {
+            width: 100%;
+            height: 600px;
+            border: none;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Styles spécifiques aux projets */
+        .project-steps {
+            margin: 20px 0;
+        }
+        .step {
+            margin: 15px 0;
+            padding: 15px;
+            background: #f8f9fa;
+            border-radius: 8px;
+            border-left: 4px solid #b5c9ff;
+        }
+        .project-conclusion {
+            font-weight: 500;
+            background: #e6f0ff;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+		h5 {
+    font-size: 16px;
+}
+
+    </style>
+</head>
+<body>
+    <a href="accueil.html" class="back">← Retour à l'accueil de mon portfolio</a>
+    
+    <div class="container">
+        <header class="exper-header">
+            <h1>Mes expériences professionnelles</h1> 
+        </header>
+
+        <!-- Navigation par onglets -->
+        <nav class="tabs">
+            <a href="#" data-tab="stage-tab" class="active">Mon Stage</a>
+            <a href="#" data-tab="alternance-tab">Mon Alternance</a>
+        </nav>
+
+        <!-- Contenu Onglet Stage -->
+        <div id="stage-tab" class="tab-content active">
+            <!-- Contenu Onglet Stage -->
+			<header class="formation-header">
+				<h1>Stage – Analyste de Données Médicales</h1>
+				<p class="formation-meta">
+					EPSM Caudan · Avril 2025 – Juin 2025 · 3 mois
+				</p>
+			</header>
+
+			<section>
+				<div style="text-align: center; margin-bottom: 30px;">
+					<img src="images/logo_epsm.jpg" alt="Logo de l'EPSM Caudan" style="height: 100px;" />
+				</div>
+				
+				<h4>Contexte et environnement</h4>
+				<p>
+					J'ai effectué un stage de trois mois à l'EPSM Bretagne Sud (Établissement Public de Santé Mentale) Jean-Martin Charcot, au sein du Département d'Information Médicale (DIM). Cet établissement spécialisé en psychiatrie, implanté à Caudan dans le Morbihan, couvre un large territoire s'étendant sur deux départements et prend en charge plus de 12 000 patients annuellement.
+				</p>
+				<p><strong>Qu'est-ce que le DIM ?</strong></p>
+				<p>
+					Le Département d'Information Médicale est chargé d'assurer la qualité, l'exhaustivité et la confidentialité des données médicales. Il répond aux demandes internes comme externes en transmettant les indicateurs nécessaires au pilotage stratégique et financier de l'établissement.
+				</p>
+			</section>
+
+			<section>
+				<h4>Ma mission principale : Production des rapports d'activité hospitalière 2024</h4>
+				<p class="project-conclusion">
+					Ma mission centrale consistait à analyser l'activité hospitalière de 2024 et produire les rapports annuels pour l'ensemble des pôles et unités de l'établissement. Cette mission s'inscrivait dans un contexte particulier de transition logicielle et de réorganisation structurelle, nécessitant une approche méthodologique rigoureuse.
+				</p>
+				<p>Ce projet s'est articulé autour de trois défis majeurs :</p>
+
+				<div class="project-steps">
+					<div class="step">
+						<p><strong>Défi 1 : Intégration de données multi-sources (Migration logicielle)</strong></p>
+						<p>
+							Le pôle enfant-adolescent avait migré vers un nouveau logiciel (Sillage) en cours d'année 2024, créant une scission des données entre deux systèmes : Cortexte (ancien) et Sillage (nouveau). J'ai dû reconstituer un jeu de données cohérent en fusionnant les informations issues de ces deux bases distinctes via Business Object et Access, tout en garantissant la cohérence et la qualité des données analysées.
+						</p>
+					</div>
+
+					<div class="step">
+						<p><strong>Défi 2 : Réorganisation du rapport du pôle adulte (Fusion organisationnelle)</strong></p>
+						<p>
+							Suite à la fusion des pôles SAUCL (Secteur Adulte Urgence Crise Liaison) et REHAB (Réhabilitation psychosociale), j'ai dû concevoir un nouveau rapport unifié. Cette mission a nécessité des échanges constants avec les professionnels du terrain pour définir la structure optimale du rapport et assurer la comparabilité des indicateurs entre 2023 et 2024, en recalculant rétrospectivement les données 2023 selon la nouvelle organisation.
+						</p>
+					</div>
+
+					<div class="step">
+						<p><strong>Défi 3 : Analyse des activités transversales</strong></p>
+						<p>
+							J'ai également analysé des activités "support" essentielles : plateau médico-technique (EEG, ECG, radiologie), assistantes sociales et Dispositif de Régulation et d'Orientation (DRO). Ces activités, moins standardisées que les soins directs, ont nécessité une approche sur mesure avec des requêtes SQL complexes pour extraire et structurer des données hétérogènes.
+						</p>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Méthodologie et outils techniques</h4>
+				<p>
+					Mon travail s'appuyait sur un système semi-automatisé reliant Access et Excel. La base Access contenait les données consolidées et les requêtes analytiques, connectée à des classeurs Excel structurés par thématiques. Grâce à Power Query, les feuilles interrogeaient directement les requêtes Access et se mettaient à jour dynamiquement, évitant les manipulations manuelles et réduisant les risques d'erreur.
+				</p>
+				<p>
+					Une étape essentielle de mon travail consistait à vérifier et fiabiliser les données en combinant approches techniques, outils métiers et expertise terrain des professionnels. Je procédais à des recoupements avec les extractions validées du RIM-P (Recueil d'Informations Médicalisé en Psychiatrie) pour garantir la cohérence des résultats.
+				</p>
+
+				<!-- Exemple de visualisations -->
+				<div class="project-images" style="margin: 20px 0;">
+					<h5>Exemples d'analyses produites :</h5>
+
+						Les rapports comprenaient des analyses détaillées de l'évolution de l'activité par pôle, des indicateurs de performance par unité, et des visualisations des parcours patients. 
+						Voici quelques indicateurs types analysés :
+					</p>
+					<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+						<strong>Indicateurs ambulatoire :</strong> Nombre d'actes, répartition par type d'intervention, professions intervenantes, lieux de soins... Voici un exemple de tableaux produits comparant le nombre de patient par établissement : 
+					
+					<div class="project-images">
+					<img src="images/tab1_epsm.png" alt="tableau comparatif du nombre de patients" width="50%" >
+					</div>
+					</div>
+					
+					<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+						<strong>Indicateurs hospitalisation :</strong> Durée moyenne de séjour, taux d'occupation, modes d'entrée, analyse des parcours
+					
+					<div class="project-images">
+					<img src="images/graph2_epsm.png" alt="Graphique sur les types de prise en charge" width="50%" >
+					</div>
+					</div>
+					<div style="background: #f8f9fa; padding: 15px; border-radius: 8px; margin: 10px 0;">
+						<strong>Activités transversales :</strong> Volume d'actes médico-techniques, délais de prise en charge DRO, profils sociaux des patients
+						<div class="project-images">
+					<img src="images/graph1_epsm.png" alt="graphique sur médico-technique" width="50%" >
+					</div>
+					</div>
+				</div>
+			</section>
+
+			<section>
+				<h4>Missions quotidiennes et support opérationnel</h4>
+				
+				<h5>Production de rapports d'activité complets</h5>
+				<p>
+					Parallèlement aux projets clés, j'ai produit les rapports annuels pour plus de 100 unités de soins, combinant données quantitatives (nombre de patients, actes, durées de séjour) et analyses qualitatives (origine géographique, diagnostics). Ces documents incluaient un historique sur trois années pour identifier les tendances et variations d'activité.
+				</p>
+
+				<h5>Réponses aux demandes ponctuelles</h5>
+				<p>
+					J'ai également traité de nombreuses sollicitations de médecins et cadres : extractions de données ciblées, indicateurs spécifiques, analyses de population. Cette dimension réactive m'a permis de mieux comprendre les enjeux locaux et les besoins concrets des équipes.
+				</p>
+
+				<h5>Fiabilisation et contrôle qualité</h5>
+				<p>
+					Un volet important de mon travail consistait à identifier et corriger les incohérences dans les données : erreurs de saisie, patients sur les mauvaises unités, dates incohérentes. Cette vigilance analytique était indispensable pour garantir la fiabilité des rapports transmis.
+				</p>
+			</section>
+
+			<section>
+				<h4>Résultats et impact</h4>
+				<p>
+					J'ai livré 5 rapports d'activité synthétiques pour les différents pôles, plus de 100 rapports d'unités détaillés, et de nombreuses analyses ponctuelles. Ces documents ont alimenté les réunions de bilan, les communications internes et les argumentaires décisionnels de l'établissement.
+				</p>
+				<p>
+					Mes analyses ont notamment révélé une augmentation continue de l'activité (+31% de patients entre 2011 et 2024), l'impact de la migration logicielle sur certains indicateurs, et des pistes d'amélioration pour l'organisation des parcours patients.
+				</p>
+				
+				<div class="project-conclusion">
+					<strong>Perspectives d'évolution :</strong> Avant la fin de mon stage, des échanges ont été amorcés autour de l'évolution vers des tableaux de bord interactifs sous Power BI, permettant d'automatiser une partie des rendus et de faciliter l'accès aux indicateurs pour les professionnels.
+				</div>
+			</section>
+
+			<section>
+				<h4>Compétences développées</h4>
+				<h5>Techniques</h5>
+				<p>
+					Ce stage m'a permis de développer mes compétences en traitement de données complexes multi-sources, requêtage SQL avancé, manipulation de bases de données Access, et production de rapports automatisés avec Power Query.
+				</p>
+				<h5>Méthodologiques</h5>
+				<p>
+					J'ai renforcé mes capacités d'analyse critique des données, de documentation des processus, de gestion de projets avec contraintes techniques, et d'adaptation aux changements organisationnels.
+				</p>
+				<h5>Professionnelles</h5>
+				<p>
+					L'immersion dans un établissement de santé mentale m'a permis de développer ma compréhension des enjeux hospitaliers, ma capacité de dialogue avec des experts métier variés, et ma rigueur dans un environnement où chaque chiffre peut influencer des décisions stratégiques.
+				</p>
+				
+				<p>Voici les outils mobilisés durant ce stage :</p>
+				<div class="tools-container">
+					<img src="images/logo_sql.png" alt="SQL Developer" class="tool-logo">
+					<img src="images/logo_access.png" alt="Access" class="tool-logo">
+					<img src="images/logo_excel.png" alt="Excel" class="tool-logo">
+					<img src="images/logo_word.png" alt="Word" class="tool-logo">
+					<img src="images/logo_ppt.png" alt="PowerPoint" class="tool-logo">
+				</div>
+			</section>
+		</div>
+
+        <!-- Contenu Onglet Alternance -->
+        <div id="alternance-tab" class="tab-content">
+            <header class="formation-header">
+                <h1>Alternance – Chargée d'études en pilotage commercial</h1>
+                <p class="formation-meta">
+                    Banque Populaire Grand Ouest (BPGO) · Septembre 2025 – Août 2026
+                </p>
+            </header>
+
+            <section>
+                <div style="text-align: center; margin-bottom: 30px;">
+                    <img src="images/logo_bPGO.png" alt="BPGO Logo" style="height: 100px;" />
+                </div>
+                
+                <h4>Contexte de l'alternance</h4>
+                <p>
+                    Depuis septembre 2025, je réalise une alternance au sein de la Banque Populaire Grand Ouest (BPGO) en tant que chargée d'études au sein du service de pilotage commercial. Cette alternance, d'une durée d'un an, s'inscrit dans une démarche de professionnalisation dans le cadre de ma dernière année en BUT Science des Données.
+                </p>
+                <p><strong>Qu'est ce que le pilotage commercial ?</strong></p>
+                <p>
+                    Le service de pilotage commercial de la BPGO accompagne les différentes directions et antennes de la banque en développant et mettant à disposition des indicateurs de suivi, des outils décisionnels ainsi que des analyses visant à piloter la performance commerciale et à éclairer les prises de décision.
+                </p>
+            </section>
+
+            <section>
+                <h4>Ma mission principale : Développer, analyser et visualiser des indicateurs d'activités</h4>
+                <p class="project-conclusion">
+                    Ma mission principale, qui a rythmé une partie significative de mon alternance, a consisté en la conception et la mise en œuvre d'un outil décisionnel innovant pour l'analyse de l'activité au sein des antennes bancaires. Ce projet ambitieux m'a permis de maîtriser l'ensemble de la chaîne de valeur, de la compréhension des besoins métier à la livraison d'une solution fonctionnelle et performante.
+                </p>
+                <p>Ce projet s'est déroulé en trois étapes clés, chacune représentant un volet distinct de mon intervention :</p>
+
+                <div class="project-steps">
+                    <div class="step">
+                        <p><strong>Étape 1 : Compréhension du Besoin Métier et Stratégie Projet</strong></p>
+                        <p>
+                            La première phase, fondamentale pour poser des bases solides, fut la compréhension approfondie du besoin métier. J'ai collaboré étroitement avec mon manager pour recueillir et synthétiser les exigences. Ces demandes ont été formalisées dans un tableau Excel, détaillant chaque indicateur souhaité, sa définition exacte, ainsi que le nom du référent métier chargé de sa validation et de répondre aux questions spécifiques.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <p><strong>Étape 2 : Développement Technique des Indicateurs (SQL & Teradata)</strong></p>
+                        <p>
+                            Ensuite, la mission s'est orientée vers le développement technique. J'ai créé environ 30 indicateurs de performance en langage SQL sur la plateforme Teradata. Chaque indicateur nécessitait un processus en plusieurs temps : développement d'une requête SQL initiale, phase de recette avec validation des référents métier, puis passage en production.
+                        </p>
+                    </div>
+
+                    <div class="step">
+                        <p><strong>Étape 3 : Conception et Déploiement de l'Application Décisionnelle (Power BI)</strong></p>
+                        <p>
+                            Enfin, j'ai procédé au développement de l'application sous Power BI. L'objectif principal était de proposer une visualisation claire et simple de tous les indicateurs, permettant aux différentes antennes de suivre leur activité et d'analyser leurs performances.
+                        </p>
+                    </div>
+					
+					<div class="step">
+                        <p><strong>Résultats final</strong></p>
+                        <p>
+                           Aujourd'hui l'application est déployée au sien de la banque et utilisée quotidiennement par les 2500 collaborateurs dans le réseau. Voici un extrait d'une page issue de l'application finale : 
+						   
+						   </p>
+						   <div class="project-images">
+							<img src="images/bpgo1.png" alt="Page d'accueil du panorama" width="60%" >
+					</div>
+                    </div>
+                </div>
+            </section>
+
+            <section>
+                <h4>Projets Annexes</h4>
+                    <p>
+        Au-delà du projet Panorama d'activités, mon alternance ne s'est pas limitée à une seule mission. En parallèle de ce travail de fond, j'ai été associée à d'autres projets propres au service du pilotage commercial, qui m'ont permis d'explorer des sujets plus opérationnels et de mobiliser des compétences différentes.
+    </p>
+
+    <h5>Tableau de Bord Power BI pour l'Analyse des Appels Sortants</h5>
+    <div class="project-steps">
+        <div class="step">
+            <p><strong>Contexte et objectif</strong></p>
+            <p>
+                Ma première mission, dès mon arrivée en septembre, a été le développement d'un suivi Power BI dédié aux appels sortants. L'objectif était de permettre aux managers de disposer d'une vision claire des appels réalisés par leurs équipes et de vérifier que les clients à contacter sur une période donnée ont bien été appelés, notamment durant les plages horaires dédiées aux appels.
+            </p>
+        </div>
+        
+        <div class="step">
+            <p><strong>Défis techniques</strong></p>
+            <p>
+                Le principal défi résidait dans le volume de données : plus de 8 millions de lignes dans la table d'origine couvrant l'ensemble des événements de téléphonie. J'ai créé une vue SQL optimisée filtrant uniquement les appels sortants des agences, réduisant la volumétrie à moins de 3 millions de lignes pour optimiser les performances de Power BI.
+            </p>
+        </div>
+        
+        <div class="step">
+            <p><strong>Réalisation</strong></p>
+            <p>
+                L'application développée comprend quatre blocs principaux : un calendrier hebdomadaire des appels par heure avec code couleur, un graphique des appels qualifiés (plus de 30 secondes), l'évolution des volumes par mois/semaine, et un tableau de synthèse par entité. Le rapport, mis à jour quotidiennement, est désormais intégré dans les habitudes de pilotage des équipes.
+				Voici des extraits des visualisations issues de l'application finale : 
+            </p>
+			<div class="project-images">
+							<img src="images/graph1.png" alt="calendrier" width="50%" >
+					</div>
+			<div class="project-images">
+							<img src="images/graph2.png" alt="Evolution par mois " width="50%" >
+					</div>
+			<div class="project-images">
+							<img src="images/graph3.png" alt="KPI " width="50%" >
+					</div>
+        </div>
+    </div>
+
+    <h5>Production de Classements pour Challenge Commercial</h5>
+    <div class="project-steps">
+        <div class="step">
+            <p><strong>Mission "Je protège et j'assure mes clients"</strong></p>
+            <p>
+                J'ai participé au suivi d'un challenge commercial dédié aux assurances sur la période du 2 au 31 mars. Ma mission consistait à produire cinq types de classements (collaborateurs, CRC, agences, groupes, directions) avec des règles spécifiques par métier et des critères d'éligibilité complexes.
+            </p>
+        </div>
+        
+        <div class="step">
+            <p><strong>Méthodologie rigoureuse</strong></p>
+            <p>
+                J'ai créé une table de référence dans le datamart Teradata pour intégrer les objectifs spécifiques au challenge, puis développé cinq requêtes SQL principales pour calculer les Taux d'Atteinte des Objectifs (TAO) par indicateur. Les classements intégraient des critères d'éligibilité stricts : TAO minimal de 75% par indicateur, TAO moyen supérieur à 100%, et au moins une vente spécifique.
+            </p>
+        </div>
+        
+        <div class="step">
+            <p><strong>Livraisons et résultats</strong></p>
+            <p>
+                J'ai produit des classements hebdomadaires via des fichiers Excel automatisés avec Power Query, incluant une page de présentation auto-suffisante expliquant les règles. Le rythme soutenu (livraisons hebdomadaires puis finale) m'a formée à la gestion de projets sous contrainte temporelle forte.
+            </p>
+        </div>
+    </div>
+
+		
+		<h5>Support Quotidien et Gestion du SAV</h5>
+		<div class="step">
+		<p>
+			Au-delà des projets structurés, j'ai assuré une implication quotidienne dans le support aux utilisateurs via une plateforme dédiée où les collaborateurs du réseau remontent leurs questions sur nos indicateurs et outils. Chaque demande nécessitait une analyse approfondie pour identifier l'origine du problème (mauvaise interprétation, biais dans les indicateurs, ou dysfonctionnement technique) et fournir une réponse pédagogique claire.
+		</p>
+		
+		<p>
+			Ces missions de support m'ont permis de me familiariser rapidement avec l'écosystème des outils de la banque, de comprendre le contexte opérationnel et de maîtriser les bases de données fréquemment utilisées. Elles ont renforcé ma polyvalence et ma capacité à apporter des réponses rapides et pertinentes.
+		</p>
+		</div>
+		
+            </section>
+
+            <section>
+                <h4>Outils et environnement technique</h4>
+                <p>
+                    Cette alternance s'inscrit dans un environnement technique professionnalisant. J'utilise principalement Power BI pour la production d'outils décisionnels et la visualisation des données, ainsi que Teradata pour le requêtage SQL et l'exploitation des bases de données.
+                </p>
+                <div class="tools-container">
+                    <img src="images/logo_powerbi.png" alt="Power BI" class="tool-logo">
+                    <img src="images/logo_teradata.png" alt="Teradata" class="tool-logo">
+                    <img src="images/logo_sql.png" alt="SQL" class="tool-logo">
+                    <img src="images/logo_excel.png" alt="Excel" class="tool-logo">
+                    <img src="images/logo_word.png" alt="Word" class="tool-logo">
+                    <img src="images/logo_ppt.png" alt="PowerPoint" class="tool-logo">
+                </div>
+            </section>
+
+            <section>
+                <h4>Compétences développées</h4>
+                <h5>Techniques</h5>
+                <p>
+                    Cette alternance m'a permis de développer des compétences méthodologiques solides, notamment en suivi de projet, en documentation fonctionnelle, en planification et en organisation du travail sur des projets de moyenne à longue durée.
+                </p>
+                <h5>Méthodologiques</h5>
+                <p>
+                    Sur le plan technique, j'ai renforcé mes compétences en requêtage SQL, en compréhension des environnements de bases de données, ainsi qu'en conception de tableaux de bord Power BI et en développement d'indicateurs statistiques.
+                </p>
+                <h5>Professionnelles</h5>
+                <p>
+                    Enfin, cette expérience m'a permis de développer des compétences professionnelles essentielles telles que le travail collaboratif, la communication de résultats et l'adaptation à un environnement métier exigeant.
+                </p>
+            </section>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Romane Lequeux. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Script pour rendre les onglets fonctionnels (optimisé)
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabLinks = document.querySelectorAll('.tabs a');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Vérifier si des onglets et contenus existent
+            if (tabLinks.length === 0 || tabContents.length === 0) return;
+
+            const activateTab = (targetId) => {
+                // Désactiver tous les onglets et contenus
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.style.color = '';
+                    if (link.querySelector('::after')) {
+                        link.style.setProperty('--after-background', 'transparent');
+                        link.style.setProperty('--content-color', '#777');
+                    }
+                });
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Activer le lien et le contenu cibles
+                const activeLink = document.querySelector(`.tabs a[data-tab="${targetId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    activeLink.style.color = 'black';
+                    activeLink.style.setProperty('--after-background', '#f9f9f9');
+                    activeLink.style.setProperty('--content-color', 'black');
+                }
+                
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+                }
+            };
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    activateTab(link.getAttribute('data-tab'));
+                });
+            });
+
+            // Activer le premier onglet par défaut
+            const currentActiveLink = document.querySelector('.tabs a.active');
+            if (currentActiveLink) {
+                activateTab(currentActiveLink.getAttribute('data-tab'));
+            } else {
+                if (tabLinks.length > 0) {
+                    activateTab(tabLinks[0].getAttribute('data-tab'));
+                }
+            }
+        });
+    </script>
+</body>
+</html>
