@@ -1,0 +1,973 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Romane Lequeux - Parcours & Compétences</title>
+	<link rel="stylesheet" href="style.css">
+
+
+    <style>
+
+		body {
+			font-family: 'Poppins', sans-serif;
+			background: #f9f9f9; /* Fond léger agréable */
+			color: #333; /* Couleur de texte par défaut plus sombre */
+			margin: 0;
+			line-height: 1.6; /* Améliore la lisibilité */
+			padding: 10px; /* Un peu de marge globale */
+		}
+
+		.container {
+			max-width: 1400px; /* Largeur maximale du contenu */
+			margin: 40px auto; /* Centrage et marges extérieures */
+			padding: 0 20px; /* Padding sur les côtés */
+		}
+
+		/* --- Header de la page --- */
+		header.page-header {
+			background: #b5c9ff; /* Couleur principale douce */
+			color: black;
+			padding: 30px 20px;
+			border-radius: 10px;
+			text-align: center;
+			margin-bottom: 40px;
+			box-shadow: 0 4px 15px rgba(181, 201, 255, 0.5); /* Ombre douce et colorée */
+		}
+		header.page-header h1 {
+			margin-top: 0;
+			font-size: 2.8em; /* Un peu plus grand */
+			margin-bottom: 10px;
+			font-weight: 600;
+		}
+		header.page-header p.header-subtitle {
+			font-size: 1.1em;
+			color: #555;
+			margin-top: 0;
+		}
+
+		/* --- Navigation par Onglets*/
+		nav.tabs {
+			display: flex;
+			align-items: center; /* Centre verticalement */
+			margin-bottom: 30px;
+			gap: 10px; /* Petit espace entre les onglets */
+			padding-bottom: 10px;
+			width: 100%;
+			box-sizing: border-box;
+			overflow-x: auto; /* Scroll horizontal si nécessaire */
+			-webkit-overflow-scrolling: touch;
+			flex-wrap: nowrap; /* En principe, on essaie de garder sur une ligne */
+			border-bottom: 1px solid #e0e0e0; /* Ligne de séparation discrète */
+		}
+		nav.tabs a {
+			padding: 12px 20px;
+			background: transparent;
+			color: #777;
+			text-decoration: none;
+			font-weight: 600;
+			font-size: 1em;
+			transition: color 0.3s ease, background-color 0.3s ease, border-color 0.3s ease; /* Transitions douces */
+			white-space: nowrap;
+			flex-shrink: 0; /* Empêche le rétrécissement */
+			cursor: pointer;
+			position: relative; /* Pour le pseudo-élément ::after */
+			border-radius: 8px; /* Coins légèrement arrondis */
+			
+		}
+		nav.tabs a::after { /* Ligne sous l'onglet actif ou survolé */
+			content: '';
+
+			position: absolute;
+			bottom: -6px;
+			left: 0;
+			width: 100%;
+			height: 3px;
+			background-color: transparent; /* Sera surchargé par le JS ou les règles .active::after */
+			transition: background-color 0.3s ease;
+		}
+		nav.tabs a.active {
+			color: #b5c9ff; /* Couleur active */
+		}
+		nav.tabs a.active::after {
+			background-color: #b5c9ff; /* Ligne sous l'onglet actif */
+		}
+		nav.tabs a:not(.active):hover {
+			color: #333;
+			background-color: #f0f0f0; /* Léger fond au survol */
+			border-color: #d0d0d0;
+		}
+
+		/* --- Contenu des Onglets --- */
+		.tab-content {
+			display: none;
+			background: #fff; /* Fond blanc */
+			padding: 40px; /* Padding généreux */
+			border-radius: 8px; /* Coins légèrement arrondis */
+			box-shadow: 0 5px 15px rgba(0,0,0,0.05); /* Ombre légère */
+			margin-top: 20px; /* Espace au-dessus */
+		}
+		.tab-content.active {
+			display: block;
+		}
+		/* Styles pour les titres dans le contenu des onglets */
+		.tab-content h4 { font-size: 1.3em; color: #444; margin-top: 25px; margin-bottom: 15px; }
+
+		/* Typographie et listes */
+		.tab-content ul {
+			list-style-type: disc;
+			margin-left: 25px;
+			padding-left: 10px;
+		}
+		.tab-content ul ul {
+			list-style-type: circle;
+			margin-top: 8px;
+		}
+		.tab-content p {
+			margin-bottom: 15px;
+		}
+
+		/* --- Section Compétences (utilisation des styles généraux) --- */
+		.tools-container {
+			text-align: center;
+			margin-top: 25px;
+			margin-bottom: 30px;
+			display: flex;
+			justify-content: center;
+			flex-wrap: wrap;
+			gap: 15px;
+		}
+		.tool-logo {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    background: white;
+    padding: 5px;
+    border-radius: 8px;
+}
+		.tool-logo:hover {
+			transform: scale(1.1);
+		}
+
+		/* --- Structure d'une entrée de "projet" ou "expérience" --- */
+		/* Nous utilisons ici les styles pour les sections de la page expériences */
+		section { 
+			margin-bottom: 40px;
+			background: #fff;
+			padding: 30px;
+			border-radius: 10px;
+			box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+		}
+
+		/* --- Footer --- */
+		footer {
+			text-align: center;
+			padding: 30px 20px;
+			margin-top: 50px;
+			font-size: 0.9em;
+			color: #777;
+			background: #e0e0e0;
+			border-radius: 10px 10px 0 0;
+		}
+
+		/* --- Bouton Retour --- */
+		a.back {
+			display: inline-block;
+			margin: 20px 0;
+			padding: 10px 15px;
+			color: #b5c9ff;
+			text-decoration: none;
+			font-weight: 600;
+			border: 1px solid #b5c9ff;
+			border-radius: 20px;
+			transition: background-color 0.3s ease, color 0.3s ease;
+		}
+		a.back:hover {
+			background-color: #b5c9ff;
+			color: white;
+		}
+
+		/* --- Responsive Design --- */
+		/* Pour les grands écrans, on tente de garder les onglets sur une ligne */
+		@media (min-width: 769px) {
+			nav.tabs {
+				flex-wrap: nowrap;
+				
+				gap: 10px;
+				border-bottom: 1px solid #e0e0e0;
+			}
+			nav.tabs a {
+				padding: 12px 20px;
+				border-radius: 8px;
+				border: 1px solid transparent;
+			}
+			nav.tabs a.active {
+				background-color: #f9f9f9;
+				border-color: ##f9f9f9;
+			}
+			nav.tabs a:not(.active):hover {
+				background-color: #f0f0f0;
+				border-color: #d0d0d0;
+			}
+		}
+
+		
+		/* Styles spécifiques pour "formation Header" */
+		.formation-header {
+			text-align: center;
+			margin-bottom: 0px;
+			background: white; 
+			padding: 0px 0px;
+			
+		}
+		
+		.formation-header h1 {
+			font-size: 2.2em;
+			margin-bottom: 0px;
+			color : #b5c9ff;
+			background: white; 
+		}
+		.formation-meta {
+			font-size: 1.1em;
+			color: #555;
+			margin-bottom: 20px;
+		}
+		
+		/* Styles spécifiques pour "exper Header" */
+		.exper-header {
+			text-align: center;
+			margin-bottom: 0px;
+			background: #f9f9f9; 
+			padding: 0px 0px;
+		}
+		
+		.exper-header h1 {
+			font-size: 4em;
+			color : black;
+			margin-bottom: 3px;
+			background: #f9f9f9; 
+		}
+		h5 {
+    font-size: 16px;
+}
+.top-nav {
+    display: flex;
+    justify-content: space-between; /* gauche / droite */
+    align-items: center;
+    width: 98%;
+    padding: 15px 15px;
+
+    top: 0;
+    left: 0;
+    z-index: 1000;
+}
+		
+
+    </style>
+</head>
+<body>
+<div class="top-nav">
+    <a href="accueil.html" class="back">← Retour à l'accueil de mon portfolio</a>
+    <a href="stage_alt.html" class="back">Mes expériences professionnelles →</a>
+</div>
+<div>
+
+	 </div>
+    <div class="container">
+         <header class="exper-header">
+            <h1>Mes compétences et projets</h1> 
+        </header>
+
+        <!-- Navigation par onglets -->
+        <nav class="tabs">
+            <a href="#" data-tab="formation-tab" class="active">Formation & Compétences</a>
+            <a href="#" data-tab="projet1-tab">Migration NoSQL</a>
+            <a href="#" data-tab="projet2-tab">Prévision Temporelle</a>
+            <a href="#" data-tab="projet3-tab">Datathon MAT!</a>
+            <a href="#" data-tab="projet4-tab">Prévision d'une variable quantitative</a> 
+			<a href="#" data-tab="projet5-tab">Mise en place d'un dashboard pour la BPGO</a> 
+        </nav>
+
+        <!-- Contenu Onglet Formation & Compétences -->
+        <div id="formation-tab" class="tab-content active">
+		<header class="formation-header">
+                    <h1>Mes formations et compétences</h1>               
+                </header>
+            <h4>Ma Formation & Compétences Clés</h4>
+
+            <section>
+                <h5>Formation Académique</h5>
+                <p>
+                    Actuellement en troisième année de <strong>Bachelor Universitaire de Technologie (BUT) Science des Données</strong> à l’IUT de Vannes. Ce parcours intensif me dote d'une expertise solide et polyvalente, à la croisée de l'informatique, des statistiques et des outils décisionnels. Je suis particulièrement intéressée par les orientations qui me permettront de poursuivre mes études en Master, que ce soit dans le domaine de la Data Science fondamentale ou de la Business Intelligence appliquée.
+                </p>
+                <p>
+                    Mon approche est résolument tournée vers la compréhension approfondie des besoins métiers, afin de pouvoir construire des solutions data qui apportent une réelle valeur ajoutée et facilitent la prise de décision.
+                </p>
+            </section>
+
+            <section>
+                <h5>Compétences Techniques Maîtrisées</h5>
+                <div class="tools-container">
+                    <!-- Assurez-vous que les chemins vers vos logos sont corrects -->
+                    <img src="images/logo_sql.png" alt="SQL" class="tool-logo">
+                    <img src="images/logo_teradata.png" alt="Teradata" class="tool-logo">
+                    <img src="images/logo_powerbi.png" alt="Power BI" class="tool-logo">
+                    <img src="images/logo_excel.png" alt="Excel" class="tool-logo">
+                    <img src="images/logo_access.png" alt="Access" class="tool-logo">
+                    <img src="images/logo_r.png" alt="Rstudio" class="tool-logo">
+                    <img src="images/logo-python.png" alt="Python" class="tool-logo"> 
+                    <img src="images/jupyter_logo.png" alt="Jupyter" class="tool-logo">
+                    <img src="images/logo_oracle.png" alt="Oracle" class="tool-logo">
+                    <img src="images/logo_mongo.png" alt="MongoDB" class="tool-logo">
+                </div>
+            </section>
+
+            <section>
+                <h5>Compétences Méthodologiques & Professionnelles</h5>
+                <ul>
+                    <li>Analyse et structuration des besoins métier</li>
+                    <li>Conception d'indicateurs clés (KPIs)</li>
+                    <li>Méthodologies de projet (gestion des étapes, documentation)</li>
+                    <li>Analyse statistique et interprétation de données</li>
+                    <li>Création de rapports et tableaux de bord décisionnels</li>
+                    <li>Vulgarisation et communication des résultats</li>
+                    <li>Autonomie et prise d'initiative</li>
+                    <li>Collaboration transverse avec des experts métier et techniques</li>
+                </ul>
+            </section>
+            
+            <section>
+                <h5>Langues</h5>
+                <ul>
+                    <li><strong>Français :</strong> Langue maternelle</li>
+                    <li><strong>Anglais :</strong> professionnel - <em>Niveau C1 (score TOEIC 945/990)</em></li>
+                </ul>
+            </section>
+        </div>
+
+
+
+
+
+
+
+
+
+
+        <!-- Contenu Onglet Projet 1 : Migration de données vers un environnement NoSQL -->
+        <div id="projet1-tab" class="tab-content">
+		<header class="formation-header">
+			<h1>Projet : Migration de données vers un environnement NoSQL</h1>
+			<p class="formation-meta">
+				Projet universitaire – BUT 3· Groupe de 3 · Durée : 1 jour
+			</p>
+		</header>
+
+		<section>
+			<h4>Contexte du projet</h4>
+			<p>
+				Ce projet visait à migrer une base de données relationnelle vers des environnements documents (NoSQL) et graphes (NEO4J). La base de données sur laquelle nous avons travaillé était une base ‘comptoir’ utilisée pour la gestion de ventes, de produits, de clients et employés d’une entreprise fictive.
+			</p>
+			<p>
+				Les objectifs principaux étaient de migrer cette base vers un système documentaire MongoDB et un système de graphe Neo4j, afin de tirer parti de la flexibilité et des capacités d’analyse propres à chacun de ces modèles pour le pilotage des performances commerciales.
+			</p>
+			<p>
+				L’objectif était également de découvrir les différentes étapes de réflexion autour de ce type de migration car il ne suffit pas simplement de migrer les données, il y a une étape primordiale d’analyse du modèle relationnelle de base et de réflexion des nouveaux modèles à créer pour optimiser et améliorer les futures bases pour les futures analyses dans un objectif commercial.
+			</p>
+		</section>
+
+		<section>
+			<h4>Méthodologie</h4>
+			<p>
+				Ainsi, la première étape et plus importante du projet a été cette phase de réflexion et d’analyse pour les modèles.
+			</p>
+			<p>
+				Nous nous sommes séparés pour chacun réfléchir de notre côté. De mon côté, j’ai commencé par prendre en main la base relationnelle en analysant le schéma fonctionnel de la base ainsi que les données contenues dans chaque table. Ensuite, il y a eu la prise et compréhension du besoin. L’objectif de passer à des bases documentaires et de graphe était d’optimiser les requêtes dans une envie d’analyse de l’activité commerciale. Il fallait donc penser notre schéma de future base en ayant en tête cette problématique. Ensuite, nous avons mis en communs nos différentes propositions et idées pour la future base. Nous avons ainsi pu par la suite conclure sur une seule idée de base que nous avons dû transmettre dans un premier temps en justifiant chaque choix par rapport à la problématique.
+			</p>
+			<p>
+				Une fois cette phase faite, il fallait passer à la phase plus technique d’implémentation de la base dans MongoDB et Neo4j. Étant en groupe, de mon côté, j’ai travaillé sur la partie MongoDB et mes collègues sur la partie Neo4j. Donc pour la partie implémentation, j’ai développé un notebook Python pour extraire les données depuis H2GIS, nettoyer et transformer les données (date en ISO…), puis les insérer dans MongoDB en respectant le modèle documentaire conçu en amont. Cette étape a notamment inclus les règles spécifiques liées à la base de données que nous avions pu identifier lors de notre analyse comme la gestion des clients sans commandes et la validation des transformations pour garantir la cohérence des données.
+			</p>
+			<p>
+				Une fois la migration effectuée, j’ai réfléchi et conçu quatre requêtes analytiques utilisant les pipelines d’agrégation MongoDB pour répondre à des problématiques sur l’analyse commerciale de l’entreprise. Chaque pipeline exploite au moins une des étapes avancées : $group, $lookup, $facet ou $setWindowFields.
+			</p>
+			<p>
+				Les problématiques et questions auxquelles j’ai pensé sont les suivantes :
+			</p>
+			<p>
+				En fin, les résultats ont été analysés pour en tirer des indicateurs de performance fiables.
+			</p>
+		</section>
+
+		<section>
+			<h4>Compétences développées</h4>
+			<h5>Techniques</h5>
+			<p>
+				Ce projet m’a permis de renforcer mes compétences en modélisation NoSQL, migration de données, requêtage MongoDB et traitement des données avec Python.
+			</p>
+			<h5>Méthodologiques</h5>
+			<p>
+				Il a également développé mes compétences en travail collaboratif, communication technique et organisation de projet car étant en groupe et ayant une quantité de travail importante pour un temps limité, nous avons dû réussir à nous séparer le travail en se faisant confiance et avec de l’entraide si besoin.
+			</p>
+			<h5>Professionnelles</h5>
+			<p>
+				Enfin, plus que sur la partie technique, cela m’a permis dans un cas concret de prendre conscience de l’importance de la phase initiale d’analyse et de compréhension d’une demande et d’un besoin.
+			</p>
+			<p>
+				Pour ce projet, voici les outils mobilisés :
+			</p>
+			<div class="tools-container">
+				<img src="images/logo-python.png" alt="Python" class="tool-logo">
+				<img src="images/logo_mongo.png" alt="MongoDB" class="tool-logo">
+				<img src="images/logo_neo.png" alt="Neo4j" class="tool-logo">
+				<img src="images/jupyter_logo.png" alt="Jupyter Notebook" class="tool-logo">
+			</div>
+		</section>
+	</div>
+
+        <!-- Contenu Onglet Projet 2 : Prévision Temporelle -->
+		<div id="projet2-tab" class="tab-content">
+			<header class="formation-header">
+				<h1>Projet : Analyse et prévision de données temporelles</h1>
+				<p class="formation-meta">
+					Projet universitaire – BUT 2 · Groupe de 3 · Durée : 3 jours
+				</p>
+			</header>
+
+			<section>
+				<h4>Contexte du projet</h4>
+				<p>
+					Dans le cadre de cette SAÉ, notre groupe a travaillé sur l’analyse et la prévision d’une série chronologique portant sur l’Indice des Prix à la Consommation (IPC) dans le secteur de l’habillement et des chaussures. L’objectif était de déterminer si la crise sanitaire liée à la COVID-19 avait eu un impact sur cet indicateur économique.
+				</p>
+				<p>
+					Le projet s’inscrivait dans un contexte professionnel de chargé d’études économiques et statistiques, et visait à modéliser une série temporelle afin d’en extraire les tendances principales et de réaliser des prévisions à court terme.
+				</p>
+			</section>
+
+			<section>
+				<h4>Méthodologie</h4>
+				<p>
+					Ce projet s’est articulé sur un peu moins de 3 jours entre le moment de la présentation des sujets et le moment du rendu final. Nous avons donc d’abord pris connaissance de notre sujet et de nos données qui étaient sur l’Indice des Prix à la Consommation (IPC). À partir de ces données, nous devions trouver une problématique à laquelle nous pourrions répondre avec des analyses et prévisions de séries temporelles. Notre choix s’est porté sur le COVID-19 et tenter de voir son impact sur l’IPC.
+				</p>
+				<p>
+					Une fois cette problématique choisie et validée, nous avons pu commencer notre analyse sur le logiciel R sous la forme d’un notebook. Dans ce notebook, nous avons d’abord rappelé le contexte, la problématique et les informations sur les données (source, période, fréquence…). Ensuite, nous sommes passés aux analyses propres aux données temporelles telles que la décomposition de séries pour identifier la tendance et la saisonnalité (s’il y en a), la modélisation de la série pour une prévision, mais également l’évaluation de la qualité de ce modèle et enfin une prévision.
+				</p>
+				<p>
+					L’interface finale développée permet de visualiser les différentes composantes de la série, les courbes de tendance, et les projections futures. Le code est structuré, commenté, et adapté à une analyse reproductible. Il met en œuvre des techniques classiques d’analyse de séries temporelles.
+				</p>
+			</section>
+
+			<section>
+				<h4>Visualisation et Analyses</h4>
+				<p>
+					Voici par exemple une première analyse avec la visualisation de la série temporelle en identifiant une période d’analyse pour répondre à la problématique (période en jaune) :
+				</p>
+				<div class="screens">
+					<img src="images/ipc1.png" alt="Série brute" class="project-image">
+				</div>
+
+				<p>
+					Ensuite, nous analysons la tendance de notre période. Dans notre cas, nous avons identifié deux périodes assez différentes et donc deux tendances dans notre période.
+				</p>
+				<div class="screens">
+					<img src="images/ipc2.png" alt="Tendance" class="project-image">
+				</div>
+
+				<p>
+					Enfin, pour répondre à notre problématique, nous produisons deux prévisions : une sans prendre l’année du COVID (ci-dessous) et une en prenant l’année du COVID en référence pour la prévision (voir notebook).
+				</p>
+				<div class="screens">
+					<img src="images/ipc3.png" alt="Prévisions à court terme" class="project-image">
+				</div>
+
+				<p>
+					À la fin, à partir de nos analyses et résultats collectés sur notre notebook R, nous avons produit un document PDF sous la forme d’une revue style INSEE afin de rendre compte de nos résultats et présenter notre méthodologie. Vous pouvez accéder à ce document juste ici :
+				</p>
+				<div class="pdf-container">
+					<iframe src="docs/SAE303_Indicedeprix_RomaneLequeux_MargotPhilippe_SolineThomas.pdf"  width="80%" height="600px" style="border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></iframe>
+				</div>
+			</section>
+
+			<section>
+				<h4>Compétences mobilisées</h4>
+				<h5>Compétences techniques :</h5>
+				<p>
+					Ce projet m’a permis de structurer une analyse statistique rigoureuse, mais également d’utiliser des notions statistiques telles que :
+					<ul>
+						<li>La description de données temporelles (tendance, saisonnalité)</li>
+						<li>La prévision de données temporelles</li>
+						<li>L’évaluation de la qualité des prévisions (erreur quadratique moyenne, distribution des résidus)</li>
+					</ul>
+				</p>
+				<h5>Compétences professionnelles :</h5>
+				<p>
+					Nous avons dû rendre une synthèse qui soit à la fois assez pointue mais également accessible à tout public. Tout cela est possible que lorsqu’on comprend vraiment son sujet et les méthodes utilisées, et est utile en général lorsqu’on doit présenter différents travaux à des personnes étrangères au domaine.
+				</p>
+			
+				<h5>Outils utilisés pour mener à bien ce projet :</h5>
+				<div class="tools-container">
+					<img src="images/logo_r.png" alt="Rstudio" class="tool-logo">
+					<img src="images/logo_excel.png" alt="Excel" class="tool-logo">
+					<img src="images/logo_word.png" alt="Word" class="tool-logo">
+				</div>
+			</section>
+		</div>
+		</div>
+
+        <!-- Contenu Onglet Projet 3 : Datathon MAT! -->
+        <div id="projet3-tab" class="tab-content">
+            <header class="formation-header"> <!-- Header spécifique pour un projet -->
+			<h1>Challenge Datathon – Partenariat avec MAT!</h1>
+			<p class="formation-meta">
+			Projet universitaire – BUT 3 · Groupe de 5 · Durée : 2 jours
+			</p>
+			</header>
+
+			<article class="project-section"> <!-- Utilisation de project-section pour les blocs de texte -->
+			<section>
+			<h4>Contexte et objectif</h4>
+			<p>
+			Ce projet a été réalisé dans le cadre d’un challenge Datathon organisé
+			en partenariat avec MAT!, une entreprise bretonne spécialisée
+			dans la revente de boissons alcoolisées et non alcoolisées.
+			</p>
+			<p>
+			MAT! est arrivée avec plusieurs besoins métiers, répartis entre différents
+			groupes. Le besoin auquel notre groupe a été assigné concernait l’up-selling.
+			Dans ce contexte, l’up-selling ne correspondait pas à une montée en gamme,
+			mais à la proposition de produits nouveaux appartenant à la même catégorie
+			que ceux déjà achetés par un client.
+			</p>
+			<p>
+			Notre objectif principal était de concevoir une application Streamlit permettant
+			aux commerciaux de l’entreprise de réaliser de l’up-selling lors de leurs
+			déplacements chez les clients. L’application devait donc être simple d’utilisation
+			et exploitable directement sur le terrain.
+			</p>
+			</article>
+			</section>
+			<section>
+
+			<article class="project-section">
+			<h4>Mon rôle et mon implication</h4>
+			<p>
+			Au sein de ce projet, j’ai principalement contribué à l’organisation du travail
+			en participant à la répartition des tâches au sein du groupe. J’ai également
+			assuré la conception et le développement du notebook Python utilisé pour
+			l’analyse des données et la modélisation statistiques.
+			</p>
+			<p>
+			J’ai produit la majeure partie du code Python nécessaire au projet, en veillant
+			à structurer le notebook de manière claire et méthodique afin de faciliter son
+			exploitation dans l’application finale.
+			</p>
+
+			<p>
+			Le travail a débuté par une phase de pré-traitement des données comprenant
+			l’importation des jeux de données, la sélection des variables pertinentes et
+			la gestion des valeurs manquantes. Cette étape était essentielle pour garantir
+			la fiabilité des analyses réalisées par la suite.
+			</p>
+			<p>
+			Une phase de modélisation a ensuite été menée, reposant sur l’utilisation de
+			règles d’association. Cette méthode a permis d’identifier des produits d’une
+			même catégorie fréquemment achetés ensemble, afin de générer des recommandations
+			adaptées au produit sélectionné dans l’application Streamlit.
+			</p>
+			<p>
+			Les résultats obtenus ont été intégrés dans une application Streamlit, pensée
+			pour être utilisée facilement par les commerciaux lors de leurs déplacements.
+			</p>
+
+			<p>
+			L’application développée permettait de sélectionner un produit et d’obtenir
+			une liste de recommandations pertinentes basées sur les habitudes d’achat
+			des clients. Une présentation orale a été réalisée devant les représentants
+			de l’entreprise MAT! ainsi que des enseignants, afin d’expliquer la
+			méthodologie employée, l’application et les résultats obtenus.
+			</p>
+			<p class="confidential">
+			En raison du caractère confidentiel des données utilisées, il n’est pas
+			possible pour moi de partager publiquement une démonstration ou des captures d’écran
+			de l’application.
+			</p>
+			</article>
+			</section>
+			<section>
+			<article class="project-section">
+			<h4>Apports et compétences développées</h4>
+			<h5> Compétences techniques</h5>
+			<p>Sur le plan tehcnique, ce porjet étant princiapelemnt réalisé en python m'a permis de développer mes compétences 
+			avec ce langage de programmation en découvrant également la création de Dashboard intéractifs avec Streamlit. 
+			Il m’a également permis de découvrir le concept statisitiques des règles d’association, que je n’avais pas encore abordées ou utilisées auparavant.</p>
+			
+			<h5> Compétences méthodologiques</h5>
+			<p>Ce challenge m’a permis de développer ma capacité à travailler de manière méthodique et efficace
+			sur une durée très courte en avançant étape par étape. Le travail en équipe toujours avec une contrainte de temps importante m’a également permis
+			de renforcer mes compétences en communication, en organisation et en gestion de projet.
+			</p>
+			<h5> Compétences professionnelles</h5>
+			<p>
+			Le fais de travailler pour un beosin concret d'une vraie entreprise m'a permis d'expérimenter en partie la réalisation 
+			de projet au sein d'une entreprsie avec la prise et compréhension du beosin métier 
+			ainsi que le travail en collaboration avec des experts métier qui, dans le cadre de ce projet, nous aidait sur la partie compréhension 
+			de la demande, des données et nous permettaient également de pouvoir vérifier que des conclusions tirées étaient plausibles 
+			tout comme en entreprise. 
+			</p>
+			
+			<p>Voici les outils utilisés pour la réussite de ce projet</p>
+                <div class="tools-container">
+                    <!-- Assurez-vous que les chemins vers vos logos sont corrects -->
+                    <img src="images/logo_excel.png" alt="Excel" class="tool-logo">
+                    <img src="images/logo-python.png" alt="Python" class="tool-logo"> 
+					<img src="images/streamlit_logo.png" alt="Streamlit" class="tool-logo"> 
+                    <img src="images/jupyter_logo.png" alt="Jupyter" class="tool-logo">
+					<img src="images/logo_sql.png" alt="SQL" class="tool-logo">
+
+                </div>
+
+			</article>
+			</section>
+			
+			<section>
+			<article class="project-section">
+			<h4>Axes d’amélioration</h4>
+			<p>
+			Un des apprentissage de ce type de challenge est également d'être capable à la fin de celui-ci d'identifier ca qui pourrait être amélioré sur le long terme.
+			Par exemple si j'avais eu plus de temps, j'aurais automatisé de nombreux processus comme des étapes du traitement des données ou 
+			approfondi certaines analyses les règles d'associations en ajoutant des facteurs (saision, situation géographique...)
+			pour enrichir l'analyse et obtenir des recommandations de produits d'autant plus pertinentes et précises.
+			</p>
+			</article>
+			</section>
+        </div>
+
+        <!-- Contenu Onglet Projet 4 : Prévision d'une variable quantitative -->
+        <div id="projet4-tab" class="tab-content">
+
+<header class="formation-header">
+    <h1>Explication et prédiction de l’âge de décès à partir de facteurs socio-médicaux et comportementaux</h1>
+    <p class="formation-meta">
+        Projet universitaire – BUT 2 · Groupe de 3 · Durée : 1 à 2 mois
+    </p>
+</header>
+
+<article class="project-section">
+
+<section>
+<h4>Contexte et objectif</h4>
+
+<p>
+Dans le cadre de cette SAÉ 401, j’ai travaillé sur un jeu de données réel issu de Kaggle portant sur l’analyse des facteurs influençant l’âge au décès.
+Ce sujet s’inscrit dans une problématique de santé publique et d’épidémiologie visant à mieux comprendre les déterminants de la longévité.
+</p>
+
+<p>
+Le jeu de données, intitulé <em>Individual Age of Death and Related Factors</em>, contient les informations de 9 221 individus décrits à travers 24 variables
+démographiques, médicales, comportementales et familiales. La variable cible étudiée est l’âge au décès.
+</p>
+
+<p>
+Mon objectif était double : identifier les variables ayant un impact significatif sur l’âge au décès grâce à une analyse statistique complète,
+puis construire un modèle de régression linéaire multiple permettant de prédire cette variable à partir des facteurs disponibles.
+</p>
+</section>
+
+</article>
+
+<article class="project-section">
+
+<section>
+<h4>Mon rôle et méthodologie</h4>
+
+<p>
+Dans ce projet, j’ai principalement pris en charge la préparation des données, l’analyse statistique et la modélisation sous R.
+J’ai également participé à la structuration globale du travail et à l’organisation du notebook afin de garantir une analyse claire et reproductible.
+</p>
+
+<p>
+J’ai commencé par une phase de prétraitement des données comprenant le nettoyage, la vérification des types de variables,
+la conversion d’unités (taille en cm, poids en kg) ainsi que la création de variables dérivées comme l’IMC afin d’enrichir l’analyse.
+</p>
+
+<p>
+J’ai ensuite réalisé une analyse exploratoire complète afin de comprendre la distribution des variables et d’identifier les premières tendances
+liées à l’âge au décès.
+</p>
+
+<p>
+Enfin, j’ai construit plusieurs modèles de régression linéaire, en testant différentes méthodes de sélection de variables
+(stepwise et approche exhaustive), afin d’identifier le modèle le plus performant et interprétable.
+</p>
+</section>
+
+</article>
+
+<article class="project-section">
+
+<section>
+<h4>Analyse et modélisation</h4>
+
+<p>
+J’ai commencé l’analyse par une exploration univariée puis bivariée des données afin de mieux comprendre les relations entre les variables explicatives et l’âge au décès.
+</p>
+
+<p>
+Les tests statistiques (ANOVA pour les variables qualitatives et régressions simples pour les variables quantitatives)
+ont permis d’identifier plusieurs facteurs significativement liés à la variable cible.
+</p>
+
+<p>
+J’ai notamment observé un impact important des comportements à risque (alcool, tabac, drogues), des maladies chroniques
+et de certains facteurs familiaux ou environnementaux sur l’âge au décès.
+</p>
+
+<p>
+J’ai ensuite construit un modèle de régression linéaire multiple permettant d’expliquer environ 54 % de la variabilité de l’âge au décès.
+Ce modèle repose sur une sélection rigoureuse des variables explicatives.
+</p>
+
+<section>
+
+<h5>Notebook du projet</h5>
+
+<iframe 
+    src="docs/SAE_401_age_mort (1).html"
+    width="80%" 
+    height="800px"
+    style="border:1px solid #ccc; border-radius:8px;">
+</iframe>
+
+</section>
+
+</section>
+
+</article>
+
+<article class="project-section">
+
+<section>
+<h4>Compétences développées</h4>
+
+<h5>Compétences techniques</h5>
+<p>
+Ce projet m’a permis de renforcer mes compétences en programmation statistique sous R, notamment sur la régression linéaire multiple,
+la préparation de données et la validation de modèles.
+J’ai également approfondi mon utilisation des méthodes de sélection de variables et des tests statistiques.
+</p>
+
+<h5>Compétences analytiques</h5>
+<p>
+J’ai développé ma capacité à analyser un jeu de données complexe de manière structurée, depuis l’exploration jusqu’à l’interprétation des résultats.
+Ce projet m’a aussi appris à adopter un regard critique sur les limites des modèles statistiques.
+</p>
+
+<h5>Compétences méthodologiques</h5>
+<p>
+Ce travail m’a permis de progresser dans ma capacité à structurer un projet analytique complet,
+en suivant une démarche rigoureuse : préparation des données, exploration, modélisation et validation.
+</p>
+
+<p>Outils utilisés :</p>
+<div class="tools-container">
+    <img src="images/logo_excel.png" alt="Excel" class="tool-logo">
+    <img src="images/logo_word.png" alt="Word" class="tool-logo">
+    <img src="images/logo_ppt.png" alt="PowerPoint" class="tool-logo">
+    <img src="images/jupyter_logo.png" alt="Jupyter" class="tool-logo">
+    <img src="images/logo_r.png" alt="R" class="tool-logo">
+</div>
+
+</section>
+
+</article>
+
+<article class="project-section">
+
+<section>
+<h4>Limites et axes d’amélioration</h4>
+
+<p>
+Bien que le modèle obtenu présente des performances satisfaisantes, il reste limité par sa nature linéaire,
+qui ne permet pas de capturer toutes les relations complexes entre les variables.
+</p>
+
+<p>
+De plus, certaines informations importantes ne sont pas disponibles dans le jeu de données,
+comme le niveau socio-économique ou des facteurs génétiques, ce qui limite la portée explicative du modèle.
+</p>
+
+<p>
+Enfin, certains individus atypiques ont mis en évidence les limites du modèle, notamment dans les cas de décès précoces ou exceptionnels.
+</p>
+
+<p>
+Une amélioration possible serait d’explorer des modèles plus avancés comme des méthodes non linéaires
+ou des algorithmes de machine learning afin d’améliorer la performance prédictive.
+</p>
+
+</section>
+
+</article>
+
+</div>
+        
+   <!-- Contenu Onglet Projet : Outil décisionnel BPGO -->
+		<div id="projet5-tab" class="tab-content">
+			<header class="formation-header">
+				<h1>Conception d'un outil décisionnel pour la Banque Populaire Grand Ouest</h1>
+				<p class="formation-meta">
+					Projet universitaire - BUT1 · Groupe de 4 · Durée : 6 semaines
+				</p>
+			</header>
+
+			<section>
+				<h4>Contexte du projet</h4>
+				<p>
+					Dans le cadre de cette SAÉ 2.06, notre groupe a collaboré avec un partenaire professionnel réel : la Banque Populaire Grand Ouest (BPGO). L'objectif était de concevoir un tableau de bord décisionnel destiné à l'équipe marketing, afin d'identifier plus facilement les clients susceptibles de souscrire à un livret bancaire spécifique.
+				</p>
+				<p>
+					La compétence principale mobilisée était de <strong>traiter des données à des fins décisionnelles</strong>, une compétence essentielle dans le contexte actuel où les tableaux de bord et applications sont des outils concrets qui appuient la prise de décision en entreprise.
+				</p>
+			</section>
+
+			<section>
+				<h4>Méthodologie</h4>
+				<p>
+					Nous avons débuté par une série d'échanges avec le client afin de cerner les besoins fonctionnels, les contraintes techniques et les attentes visuelles concernant l'outil. Cela nous a permis d'établir un cahier des charges précis pour cadrer le projet.
+				</p>
+				<p>
+					Nous avons ensuite travaillé sur un jeu de données anonymisé fourni par la BPGO au format Excel. Ne connaissant pas les données bancaires, une phase de compréhension des variables a été essentielle pour pouvoir interpréter correctement les résultats. Un travail important de nettoyage a ensuite été réalisé : suppression des variables inutiles à l'analyse, traitement des valeurs manquantes, homogénéisation des formats, etc.
+				</p>
+				<p>
+					En groupe, nous avons ensuite croisé les différentes variables avec notre variable cible : la détention du livret bancaire. Cette analyse nous a permis d'identifier les facteurs influents, c'est-à-dire les caractéristiques les plus discriminantes pour prédire la souscription au livret.
+				</p>
+				<p>
+					À partir de ces éléments, nous avons conçu l'application sur Power BI, structurée en quatre pages :
+				</p>
+				<ul>
+					<li><strong>Page 1</strong> – Accueil : présentation de la problématique</li>
+					
+					<div class="project-images">
+					<img src="images/powerbi_1.png" alt="Page accueil Power BI" width="60%" >
+					</div>
+					
+					<li><strong>Page 2</strong> – Portrait général non filtrable des apporteurs d'argent frais</li>
+					<div class="project-images">
+					<img src="images/powerbi_2.png" alt="Portrait général Power BI " width="60%">
+					</div>
+					
+					<li><strong>Page 3</strong> – Portrait dynamique avec filtres interactifs (sexe, situation familiale, McDonough…)</li>
+					<div class="project-images">
+					<img src="images/powerbi_3.png" alt="Page avec filtres interactifs Power BI" width="60%">
+					</div>
+					
+					<li><strong>Page 4</strong> – Profil agrégé du segment sélectionné (effectif, part, montant total, etc.)</li>
+					<div class="project-images">
+					<img src="images/powerbi_4.png" alt="Page résumé statistique Power BI" width="60%">
+					</div>
+				</ul>
+
+			</section>
+
+			<section>
+				<h4>Livrables et soutenance</h4>
+				<p>
+					Nous avons livré une <strong>notice d'utilisation</strong>, un <strong>rapport de projet</strong>, une <strong>infographie synthétique</strong> et présenté notre travail lors d'une soutenance professionnelle devant les représentants de la BPGO.
+				</p>
+				
+				<!-- Affichage de l'infographie -->
+				<div class="pdf-container">
+					<h5>Infographie de synthèse des résultats (sans les résultats soumis à la confidentialité) :</h5>
+					<iframe src="docs/poster_A1_BPGO_ano.pdf" width="80%" height="600px" style="border: none; box-shadow: 0 4px 10px rgba(0,0,0,0.1);"></iframe>
+				</div>
+				
+			</section>
+
+			<section>
+				<h4>Compétences développées</h4>
+				<h5>Techniques</h5>
+				<p>
+					Ce projet m'a permis de développer mes compétences en nettoyage et traitement de données, conception de tableaux de bord sur Power BI, analyse statistique et visualisation de données.
+				</p>
+				<h5>Méthodologiques</h5>
+				<p>
+					Il a renforcé mes compétences en gestion de projet, organisation du travail en équipe et méthodologie d'analyse de données.
+				</p>
+				<h5>Professionnelles</h5>
+				<p>
+					La dimension partenariale du projet m'a permis de développer mes compétences en communication professionnelle, gestion des réunions et interactions avec un client réel. La compétence la plus développée à l'issue de cette expérience reste celle en lien avec le <strong>développement d'un outil décisionnel</strong>.
+				</p>
+				<p>
+					Pour ce projet, voici les outils mobilisés :
+				</p>
+				<div class="tools-container">
+					<img src="images/logo_powerbi.png" alt="Power BI" class="tool-logo">
+					<img src="images/logo_excel.png" alt="Excel" class="tool-logo">
+					<img src="images/logo_word.png" alt="Word" class="tool-logo">
+					<img src="images/logo_ppt.png" alt="PowerPoint" class="tool-logo">
+				</div>
+			</section>
+		</div>
+   </div> <!-- Fin .container -->
+
+    <footer>
+        <p>&copy; 2026 Romane Lequeux. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Script pour rendre les onglets fonctionnels (optimisé)
+        document.addEventListener('DOMContentLoaded', () => {
+            const tabLinks = document.querySelectorAll('.tabs a');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            // Vérifier si des onglets et contenus existent
+            if (tabLinks.length === 0 || tabContents.length === 0) return;
+
+            const activateTab = (targetId) => {
+                // Désactiver tous les onglets et contenus
+                tabLinks.forEach(link => {
+                    link.classList.remove('active');
+                    link.style.color = ''; // Réinitialiser la couleur par défaut
+                    if (link.querySelector('::after')) { // Si le pseudo-élément existe
+                        link.style.setProperty('--after-background', 'transparent'); // Réinitialiser la couleur de la ligne
+                        link.style.setProperty('--content-color', '#777'); // Couleur par défaut des onglets
+                    }
+                });
+                tabContents.forEach(content => content.classList.remove('active'));
+
+                // Activer le lien et le contenu cibles
+                const activeLink = document.querySelector(`.tabs a[data-tab="${targetId}"]`);
+                if (activeLink) {
+                    activeLink.classList.add('active');
+                    // Appliquer les styles spécifiques pour l'état actif
+                    activeLink.style.color = 'black'; // Couleur active du texte
+                    activeLink.style.setProperty('--after-background', '#f9f9f9'); // Couleur active de la ligne
+                    activeLink.style.setProperty('--content-color', 'black'); // Si besoin, couleur du texte actif
+                }
+                
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.classList.add('active');
+ 
+                }
+            };
+
+            tabLinks.forEach(link => {
+                link.addEventListener('click', (event) => {
+                    event.preventDefault();
+                    activateTab(link.getAttribute('data-tab'));
+                });
+            });
+
+            // Activer le premier onglet par défaut s'il n'y en a pas d'actif explicitement défini
+            const currentActiveLink = document.querySelector('.tabs a.active');
+            if (currentActiveLink) {
+                activateTab(currentActiveLink.getAttribute('data-tab'));
+            } else {
+                if (tabLinks.length > 0) {
+                    activateTab(tabLinks[0].getAttribute('data-tab'));
+                }
+            }
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+        <title>Accueil - Portfolio Romane Lequeux</title>
+
+    <link rel="stylesheet" href="style.css">
+	<style>
+	/* --- Styles Globaux & Reset Basique --- */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
+
+*, *::before, *::after {
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    background: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    overflow-x: hidden; /* Empêche le scroll horizontal pendant l'animation */
+}
+
+/* --- Conteneur principal pour centrer le contenu --- */
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+/* --- Section Héros (En-tête accueillant) --- */
+.hero-section {
+    background: #b5c9ff;
+    color: black;
+    
+    /* La taille initiale sera gérée par le body flex et min-height */
+    padding: 50px 20px; /* Remis à une valeur plus petite, car la transition le fera grandir */
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh; /* Au départ, il prend TOUTE la hauteur */
+    overflow: hidden;
+    position: relative; /* Nécessaire pour ajuster la position lors de la contraction */
+    z-index: 10; /* Assure qu'il est au-dessus du contenu principal */
+    transition: all 0.7s ease-in-out; /* Transition pour tous les changements CSS */
+    cursor: pointer; /* Indique que la section est cliquable */
+}
+
+/* Style une fois que la section est contractée (ajouté par JS) */
+.hero-section.contracted {
+    min-height: 450px; /* Nouvelle hauteur plus petite */
+    padding: 30px 20px; /* Reduit le padding */
+    min-width: 100vw; /* Occupe une largeur de 50% de la vue (ou ajustez selon ce que vous voulez) */
+    max-width: 1500px; /* Largeur max pour le rectangle */
+    margin: 20px auto; /* Centre le rectangle et ajoute une marge */
+ 
+}
+
+/* Ajustements pour les textes dans la section héros quand elle est contractée */
+.hero-section.contracted .hero-title {
+    font-size: 2.2em; /* Réduit la taille du titre */
+}
+.hero-section.contracted .hero-subtitle {
+    font-size: 1em; /* Réduit la taille du sous-titre */
+    margin-top: 5px;
+}
+
+/* --- Contenu Principal --- */
+.main-content {
+    flex-grow: 1;
+    background: #f9f9f9;
+    padding-top: 50px;
+    padding-bottom: 50px;
+    text-align: center;
+    
+    opacity: 0; /* Initialement caché */
+    pointer-events: none; /* Empêche l'interaction tant qu'il est caché */
+    transition: opacity 0.7s ease-in-out 0.3s; /* Délai pour que la hero-section se contracte avant que le contenu n'apparaisse */
+}
+
+/* Le contenu principal devient visible quand la hero-section est contractée */
+.hero-section.contracted ~ .main-content {
+    opacity: 1;
+    pointer-events: auto; /* Permet l'interaction */
+    transition: opacity 0.7s ease-in-out 0.4s; /* Ajustement du délai */
+}
+
+
+.container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 20px;
+    width: 100%;
+}
+
+.intro-section .intro-text {
+    max-width: 900px;
+    margin: 20px auto;
+    text-align: justify;
+    line-height: 1.7em;
+    font-size: 1.1em;
+}
+
+/* --- Liens avec boutons --- */
+.links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin: 40px 0;
+    flex-wrap: wrap;
+}
+
+.links a {
+    background: white;
+    color: #333;
+    padding: 15px 35px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.15em;
+    transition: background 0.3s ease, color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+}
+
+.links a:hover,
+.links a:focus {
+    background: #b5c9ff;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Style spécifique pour le lien CV */
+.cv-link {
+    background: #3498db;
+    color: white !important;
+}
+.cv-link:hover,
+.cv-link:focus {
+    background: #2980b9;
+    color: white !important;
+}
+
+/* --- Footer --- */
+footer {
+    text-align: center;
+    padding: 30px 20px;
+    margin-top: auto;
+    font-size: 0.9em;
+    color: #777;
+    background: #e0e0e0;
+    border-radius: 0;
+}
+h5 {
+    font-size: 16px;
+}
+
+/* --- Responsive Design --- */
+@media (max-width: 768px) {
+
+</style>
+</head>
+<body>
+
+    <!-- Section Héros (En-tête accueillant - c'est cette section qui va se contracter) -->
+    <header class="hero-section">
+        <div class="hero-content">
+            <h1 class="hero-title">Romane LEQUEUX | PORTFOLIO</h1>
+            <p class="hero-subtitle">Étudiante et apprentie en Science des Données </p>
+				<p class="hero-click-hint">Cliquez pour continuer</p>
+				<div class="scroll-arrow">↓</div>
+        </div>
+    </header>
+
+
+    <!-- Contenu Principal de la page - initialement masqué ou déplacé -->
+    <main class="main-content">
+        <div class="container">
+            <section class="intro-section">
+                <p class="intro-text">
+				Bonjour et bienvenue sur mon portfolio !
+
+				Je m’appelle Romane Lequeux, et je suis étudiante en dernière année de BUT Science des Données à l’IUT de Vannes.
+
+				Ce site présente mon parcours, les projets que j’ai réalisés ainsi que les expériences professionnelles qui ont contribué à développer mes compétences.
+				À travers ce portfolio, je souhaite mettre en valeur les savoir-faire que j’ai acquis au cours de ma formation et de mes expériences, ainsi que ma progression dans le domaine de la science des données.
+				C’est également un espace qui reflète mon envie de continuer à apprendre, à expérimenter et à évoluer dans le domaine de la Data.
+					     </p>
+						 
+						 <p> Je vous laisse parcourir les pages suivantes si vous êtes curieux et que vous souhaitez en savoir plus ! </p>
+	
+                <div class="links">
+                    <a href="projet.html">Mes compétences et projets</a>
+                    <a href="stage_alt.html">Mes Expériences</a>
+					
+                </div >
+				
+				<div class="links">
+				<p> Vous pouvez également accéder à mon CV : </p>
+                <a href="docs/cv_ano.pdf" >Voir mon CV</a>
+				</div>
+            </section>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Romane Lequeux. Tous droits réservés.</p>
+    </footer>
+
+    <script>
+        // Script pour gérer l'animation au clic
+        document.addEventListener('DOMContentLoaded', () => {
+            const heroSection = document.querySelector('.hero-section');
+            const mainContent = document.querySelector('.main-content');
+            const body = document.body;
+
+            heroSection.addEventListener('click', () => {
+                // Ajouter une classe pour déclencher la transition CSS
+                heroSection.classList.add('contracted');
+                // Optionnel : Rendre le contenu principal visible (si vous l'aviez caché avec display:none initialement)
+                // Si .main-content est déjà affiché (comme dans le CSS actuel), on peut juste vouloir s'assurer qu'il est bien positionné.
+                // ici, on met un petit délai pour que l'animation de contraction se fasse avant de révéler le reste
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.pointerEvents = 'auto'; // Permet d'interagir avec le contenu
+                }, 300); // Durée correspondant à la transition CSS
+            });
+
+            // Initialement masquer le main-content et/ou le rendre non interactif
+            // Si le CSS l'a déjà géré, c'est suffisant. Sinon, décommentez ceci :
+            // mainContent.style.opacity = '0';
+            // mainContent.style.pointerEvents = 'none'; // Empêche les interactions pendant qu'il est caché
+        });
+    </script>
+
+</body>
+</html>
